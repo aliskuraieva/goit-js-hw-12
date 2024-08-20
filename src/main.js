@@ -120,16 +120,15 @@ function onSearch(event) {
       galleryEl.innerHTML = galleryCardsTemplate;
       console.log(galleryCardsTemplate);
 
-      const light = new SimpleLightbox('.js-gallery a', {
+      const lightBox = new SimpleLightbox('.js-gallery a', {
         overlay: true,
         captionsData: 'alt',
         overlayOpacity: 0.8,
         captionDelay: 250,
         focus: true,
       });
-      light.refresh();
+      lightBox.refresh();
       searchForm.reset();
-      console.log(light);
     })
     .catch(err => {
       iziToast.error({
