@@ -7,16 +7,6 @@ const searchFormEl = document.querySelector('.js-search-form');
 const galleryEl = document.querySelector('.js-gallery');
 const loader = document.querySelector('.loader');
 
-function showLoader() {
-  loader.classList.remove('is-hidden');
-}
-function hideLoader() {
-  loader.classList.add('is-hidden');
-}
-
-showLoader();
-setTimeout(hideLoader, 2000);
-
 function onSearch(event) {
   event.preventDefault();
   const searchedValue = searchFormEl.elements.user_query.value;
@@ -29,6 +19,16 @@ function onSearch(event) {
     });
     return;
   }
+
+  function showLoader() {
+    loader.classList.remove('is-hidden');
+  }
+  function hideLoader() {
+    loader.classList.add('is-hidden');
+  }
+
+  showLoader();
+  setTimeout(hideLoader, 300);
 
   fetchPhotos(searchedValue)
     .then(data => {
@@ -43,6 +43,7 @@ function onSearch(event) {
 
         return;
       }
+
       const galleryCardsTemplate = data.hits
         .map(imgDetails => createGalleryCardTemplate(imgDetails))
         .join('');
