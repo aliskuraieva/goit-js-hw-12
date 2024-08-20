@@ -1,13 +1,10 @@
-import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
-
 export const createGalleryCardTemplate = imgInfo => {
   return `
     <li class="gallery-card">
   <a class="gallery-link" href="${imgInfo.largeImageURL}">
     <img
       class="gallery-img"
-      src="${imgInfo.webFormatURL}"
+      src="${imgInfo.webformatURL}"
       data-source="${imgInfo.largeImageURL}"
       alt="${imgInfo.tags}"
     />
@@ -28,6 +25,6 @@ export const createGalleryCardTemplate = imgInfo => {
       </li>
     </ul>
   </div>
-</li>;
+</li>
     `;
 };
