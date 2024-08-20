@@ -6,7 +6,7 @@ export const fetchPhotos = searchedQuery => {
     q: searchedQuery,
     image_type: 'photo',
     orientation: 'horizontal',
-    safeSearch: true,
+    safesearch: true,
   });
 
   return fetch(`${BASE_URL}/?${urlParams}`).then(response => {

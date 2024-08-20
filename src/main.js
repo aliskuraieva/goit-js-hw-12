@@ -73,10 +73,10 @@ import { fetchPhotos } from './js/pixabay-api';
 import { createGalleryCardTemplate } from './js/render-function';
 import SimpleLightbox from 'simplelightbox';
 
-const searchForm = document.querySelector('.js-search-form');
+const searchFormEl = document.querySelector('.js-search-form');
 const galleryEl = document.querySelector('.js-gallery');
 const loader = document.querySelector('.loader');
-console.log(loader);
+
 function showLoader() {
   loader.classList.remove('is-hidden');
 }
@@ -89,7 +89,7 @@ setTimeout(hideLoader, 2000);
 
 function onSearch(event) {
   event.preventDefault();
-  const searchedValue = searchForm.elements.user_query.value;
+  const searchedValue = searchFormEl.elements.user_query.value;
 
   if (searchedValue === '') {
     iziToast.warning({
@@ -102,7 +102,6 @@ function onSearch(event) {
 
   fetchPhotos(searchedValue)
     .then(data => {
-      console.log(data);
       if (!data.hits.length) {
         iziToast.error({
           title: 'Error',
@@ -118,7 +117,6 @@ function onSearch(event) {
         .map(imgDetails => createGalleryCardTemplate(imgDetails))
         .join('');
       galleryEl.innerHTML = galleryCardsTemplate;
-      console.log(galleryCardsTemplate);
 
       const lightBox = new SimpleLightbox('.js-gallery a', {
         overlay: true,
@@ -128,13 +126,10 @@ function onSearch(event) {
         focus: true,
       });
       lightBox.refresh();
-      searchForm.reset();
+      searchFormEl.reset();
     })
     .catch(err => {
-      iziToast.error({
-        title: 'Error',
-        message: 'Illegal operation',
-      });
+      console.log(err);
     });
 }
-searchForm.addEventListener('submit', onSearch);
+searchFormEl.addEventListener('submit', onSearch);
