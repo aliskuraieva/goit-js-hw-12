@@ -70,7 +70,7 @@
 
 import iziToast from 'izitoast';
 import { fetchPhotos } from './js/pixabay-api';
-import { createGalleryCardTemplate } from './js/render-function';
+import { createGalleryCardTemplate } from './js/render-functions';
 import SimpleLightbox from 'simplelightbox';
 
 const searchFormEl = document.querySelector('.js-search-form');
